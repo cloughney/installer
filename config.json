@@ -1,0 +1,15 @@
+{
+	"groups": {
+		"standard": {
+			"apps": [
+				"cmder"
+			]
+		},
+		"dev": {
+			"apps": [
+				"cmder",
+				"nvm"
+			]
+		}
+	}
+}
