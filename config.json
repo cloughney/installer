@@ -2,13 +2,17 @@
 	"groups": {
 		"standard": {
 			"apps": [
+				"7zip",
 				"cmder"
 			]
 		},
 		"dev": {
 			"apps": [
-				"cmder",
-				"nvm"
+				"dotnet",
+				"git",
+				"nvm",
+				"telnet",
+				"yarn"
 			]
 		}
 	}
