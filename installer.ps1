@@ -1,4 +1,4 @@
-﻿$webConfigFile = 'https://gist.githubusercontent.com/cloughney/2cf4161af284f6e6955a0306ca125126/raw/c4585578e0376f54a43aaec76c77e6f1b5dbc991/scoop-install-groups.json'
+﻿$webConfigFile = 'https://raw.githubusercontent.com/cloughney/installer/master/config.json'
 
 function Get-Groups-From-Web {
     param ([string]$local:webConfigFile)
