@@ -2,14 +2,14 @@
 
 function Get-Groups-From-Web {
     param ([string]$local:webConfigFile)
-    
+
     $local:groups = @{}
     $local:webGroupConfig = (new-object net.webclient).downloadstring($webConfigFile) | convertfrom-json
-    
+
     $webGroupConfig.groups | get-member -type noteproperty | % {
         $local:groupName = "$($_.Name)"
         $local:group = $webGroupConfig.groups."$($groupName)"
-    
+
         $groups.Add($groupName, $group.apps)
     }
 
@@ -32,7 +32,7 @@ function Get-Valid-Input {
     do {
         $answer = read-host -prompt $prompt
     } while (-not $validOptions.Contains($answer))
-    
+
     $answer
 }
 
@@ -67,13 +67,14 @@ function List-Groups {
 
     write-host ''
     write-host 'Available Groups:'
+    write-host ''
     $groupNames | % { write-host "`t> $($_)" }
     write-host ''
 }
 
 function List-Apps {
     param ([string[]]$local:appNames)
-    
+
     write-host ''
     $appNames | % { write-host "`t> $($_)" }
     write-host ''
@@ -91,13 +92,13 @@ function Select-Group {
         list-groups $groupNames
         $selectedGroup = get-valid-input 'Choose a group to install' $groupNames $false
         $continueWithSelection = $true
-        
-        if ((get-valid-input 'List apps in this group?' $yn) -eq 'y') {
+
+        if ((get-valid-input "List apps in group '$($selectedGroup)'?" $yn) -eq 'y') {
             list-apps $groups.Get_Item($selectedGroup)
             $continueWithSelection = ((get-valid-input 'Continue with this group?' $yn) -eq 'y')
         }
     } while (-not $continueWithSelection)
-    
+
     $selectedGroup
 }
 
